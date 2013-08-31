@@ -8,9 +8,16 @@
  * Example: my_strlen("foo") should yield 3.
  */
 int my_strlen(const char * s)
-{
-  int count = strlen(s);
-  return 0;
+{ \\Local Declarations
+  int count = 0;
+
+  \\Executable Statements
+    for(;*s != '\0',s++)
+      {
+	int count += 1;
+      }
+
+  return count;
 }
 
 /**
@@ -20,8 +27,19 @@ int my_strlen(const char * s)
  * Example: my_countchar("foo", 'o') should yield 2.
  */
 int my_countchar(const char * s, char c)
-{
-    return 0;
+{ 
+  \\Local Declarations
+    int occurances = 0;
+
+  \\Executable Statements
+    for(;*s != '\0'; s++)
+      {
+	if(*s == c)
+	  {
+	    occurances +=1;
+	  }
+      }
+  return occurances;
 }
 
 /**
@@ -34,9 +52,15 @@ int my_countchar(const char * s, char c)
  * my_strupper(foobar) yields "FOOBAR".
  */
 void my_strupper(char * s)
-{
-
-}
+{ \\Local Declarations
+    for(;*s != '\0'; s++)
+      {
+	if ((*s >= 97) && (*s <= 122))
+	  {
+	    *s -= 32;
+	  }
+      }
+ }
 
 /**
  * Convert an entire null-terminated string 's' to lowercase.  Only
@@ -49,6 +73,14 @@ void my_strupper(char * s)
  */
 void my_strlower(char * s)
 {
+  \\Executable Statements
+    for(;*s != '\0'; s++)
+      {
+	if((*s >=65) && (*s <=90))
+	  {
+	    *s += 32;
+	  }
+      }
 
 }
 
@@ -64,7 +96,15 @@ void my_strlower(char * s)
  */
 void my_strcpy(char * s1, const char * s2)
 {
+\\Local Declarations
+  int i;
 
+\\Executable Statements
+  for(i = 0; s2[i] != '\0'; i++)
+    {
+      s1[i] = s2[i];
+    }
+ s1[i] = '\0';
 }
 
 /**
@@ -78,8 +118,16 @@ void my_strcpy(char * s1, const char * s2)
  * my_strncpy(foo, "foo", 1) yields "f".
  */
 void my_strncpy(char * s1, const char * s2, int num)
-{
-    
+{ 
+  \\Local Declarations
+    int j;
+
+  \\Executabke Statements
+    for(j = 0; j < num; j++)
+      {
+	s1[j] = s2[j];
+      }
+  s1[num] = '\0';
 }
 
 
@@ -94,7 +142,18 @@ void my_strncpy(char * s1, const char * s2, int num)
  */
 void my_strcat(char * s1, const char * s2) 
 {
-    
+  \\Local Declarations
+    int i,j;
+
+  \\Executable Statements
+    for(i = 0; s1[i] != '\0'; i++)
+      {
+      }
+  for(j = 0; s2[j] != '\0'; j++)
+    {
+      s1[i + j] = s2[j];
+    }
+  s1[i + j] = '\0';
 }
 
 /** 
@@ -108,7 +167,18 @@ void my_strcat(char * s1, const char * s2)
  */
 void my_strncat(char * s1, const char * s2, int num)
 {
-   
+  \\Local Declarations
+    int j,k;
+
+  \\Executable Statements
+    for(j = 0; s1[j] != '\0'; j++)
+      {
+      }
+  for(k = 0; s2[k] != '\0'; k++)
+    {
+      s1[j + k] = s2[j];
+    }
+  s1[j + k] = '\0';
 }
 
 /**
@@ -123,7 +193,33 @@ void my_strncat(char * s1, const char * s2, int num)
 
 const char *my_strstr(const char * s1, const char * s2)
 {
-    return NULL;
+  \\Local Declarations
+    int k, check = 0;
+  int j = 0;
+  int pos = 0;
+    
+ \\Executable Statements
+   for(i = 0; s1[i] != '\0'; i++)
+     {
+       if((s1[i] == s2[j]) && (s2[j] != '\0'))
+	 {
+	   if (pos == 0)
+	     {
+	       pos = s1[i];
+	     }
+	   check = 1;
+	   j++;
+	 }
+     }
+ if (check == 1)
+   {
+     return &s1[pos];
+   }
+ else
+   {
+     return NULL;
+   }
+
 }
 
 
@@ -156,7 +252,8 @@ const char *my_strstr(const char * s1, const char * s2)
  */
 void my_strinsert(char *s1, const char *s2, int pos)
 {
-  
+  0
+  strinsert(s1,s2,pos); 
 }
 
 /**
@@ -191,6 +288,6 @@ void my_strinsert(char *s1, const char *s2, int pos)
  */
 void my_strdelete(char *s, int pos, int length)
 {
-  
+  strdelete(s,pos,length);
 }
 
