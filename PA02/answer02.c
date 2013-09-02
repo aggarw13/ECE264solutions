@@ -8,13 +8,13 @@
  * Example: my_strlen("foo") should yield 3.
  */
 int my_strlen(const char * s)
-{ \\Local Declarations
+{ /*Local Declarations*/
   int count = 0;
 
-  \\Executable Statements
-    for(;*s != '\0',s++)
+  /*Executable statement*/
+  for(;*s != '\0';s++)
       {
-	int count += 1;
+	 count += 1;
       }
 
   return count;
@@ -28,10 +28,10 @@ int my_strlen(const char * s)
  */
 int my_countchar(const char * s, char c)
 { 
-  \\Local Declarations
+  /*Local Declarations*/
     int occurances = 0;
 
-  \\Executable Statements
+  
     for(;*s != '\0'; s++)
       {
 	if(*s == c)
@@ -52,7 +52,7 @@ int my_countchar(const char * s, char c)
  * my_strupper(foobar) yields "FOOBAR".
  */
 void my_strupper(char * s)
-{ \\Local Declarations
+{ 
     for(;*s != '\0'; s++)
       {
 	if ((*s >= 97) && (*s <= 122))
@@ -73,7 +73,7 @@ void my_strupper(char * s)
  */
 void my_strlower(char * s)
 {
-  \\Executable Statements
+ 
     for(;*s != '\0'; s++)
       {
 	if((*s >=65) && (*s <=90))
@@ -96,10 +96,10 @@ void my_strlower(char * s)
  */
 void my_strcpy(char * s1, const char * s2)
 {
-\\Local Declarations
+
   int i;
 
-\\Executable Statements
+
   for(i = 0; s2[i] != '\0'; i++)
     {
       s1[i] = s2[i];
@@ -119,10 +119,10 @@ void my_strcpy(char * s1, const char * s2)
  */
 void my_strncpy(char * s1, const char * s2, int num)
 { 
-  \\Local Declarations
+
     int j;
 
-  \\Executabke Statements
+
     for(j = 0; j < num; j++)
       {
 	s1[j] = s2[j];
@@ -142,10 +142,10 @@ void my_strncpy(char * s1, const char * s2, int num)
  */
 void my_strcat(char * s1, const char * s2) 
 {
-  \\Local Declarations
+
     int i,j;
 
-  \\Executable Statements
+
     for(i = 0; s1[i] != '\0'; i++)
       {
       }
@@ -167,18 +167,17 @@ void my_strcat(char * s1, const char * s2)
  */
 void my_strncat(char * s1, const char * s2, int num)
 {
-  \\Local Declarations
+
     int j,k;
 
-  \\Executable Statements
     for(j = 0; s1[j] != '\0'; j++)
       {
       }
-  for(k = 0; s2[k] != '\0'; k++)
+  for(k = 0; k < num; k++)
     {
-      s1[j + k] = s2[j];
+      s1[j + k] = s2[k];
     }
-  s1[j + k] = '\0';
+  s1[j + num] = '\0';
 }
 
 /**
@@ -193,15 +192,15 @@ void my_strncat(char * s1, const char * s2, int num)
 
 const char *my_strstr(const char * s1, const char * s2)
 {
-  \\Local Declarations
-    int k, check = 0;
+
+    int i, check = 0;
   int j = 0;
   int pos = 0;
     
- \\Executable Statements
+
    for(i = 0; s1[i] != '\0'; i++)
      {
-       if((s1[i] == s2[j]) && (s2[j] != '\0'))
+       if((s2[j] != '\0') && (s1[i] == s2[j]))
 	 {
 	   if (pos == 0)
 	     {
@@ -209,6 +208,10 @@ const char *my_strstr(const char * s1, const char * s2)
 	     }
 	   check = 1;
 	   j++;
+	 }
+       else if((s2[j] != '\0') && (s1[i] != s2[j]))
+	 {
+	   check = 0;
 	 }
      }
  if (check == 1)
@@ -246,15 +249,45 @@ const char *my_strstr(const char * s1, const char * s2)
  * 
  * Example: char foo[10] = "foo";
  * my_strinsert(foo, "bar", 0) yields "barfoo".
- * 
+  * 
  * Example(2): char foo[10] = "foo";
  * my_strinsert(foo, "bar", 100) yields "foobar".
  */
 void my_strinsert(char *s1, const char *s2, int pos)
 {
-  0
-  strinsert(s1,s2,pos); 
+  int length = 0;
+  int i, lengths2 = 0;
+  
+  for(i = 0; s1[i] != '\0'; i++)
+    {
+      length += 1;
+    }
+  for(i = 0; s2[i] != '\0'; i++)
+    {
+      lengths2 += 1;
+    }
+  if (pos < length)
+    {
+      for(i = length - 1 + lengths2; i >= (pos + lengths2); i--)
+	{
+	      s1[i] = s1[i - lengths2];
+        }
+      for(i = 0;i < lengths2; i++)
+	{
+	  s1[pos + i] = s2[i];
+	}
+    }
+  else
+    {
+      for(i = 0; i < lengths2; i++)
+	{
+	  s1[i + length] = s2[i];
+	}
+    }
+  s1[length + lengths2] = '\0';
 }
+
+
 
 /**
  * Delete a portion of the null-terminated string s that starts at
@@ -288,6 +321,28 @@ void my_strinsert(char *s1, const char *s2, int pos)
  */
 void my_strdelete(char *s, int pos, int length)
 {
-  strdelete(s,pos,length);
+   int i,j;
+  int size = 0;
+
+
+    for(i = 0; s[i] != '\0'; i++)
+      {
+	size += 1;
+      }
+    if(pos < length)
+      {
+	if (length < size - 1 - pos)
+	  {
+	    for(j = 0; j < size - 1 - pos - length ; j++)
+	      {
+		s[pos + j] = s[pos + length + j + 1];
+	      }
+	    s[pos + j] = '\0';
+	  }
+	else
+	  {
+	    s[pos] = '\0';
+	  }
+      }
 }
 
