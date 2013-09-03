@@ -99,11 +99,11 @@ void my_strcpy(char * s1, const char * s2)
 
   int i;
 
-
   for(i = 0; s2[i] != '\0'; i++)
     {
       s1[i] = s2[i];
     }
+
  s1[i] = '\0';
 }
 
@@ -121,7 +121,6 @@ void my_strncpy(char * s1, const char * s2, int num)
 { 
 
     int j;
-
 
     for(j = 0; j < num; j++)
       {
@@ -144,11 +143,8 @@ void my_strcat(char * s1, const char * s2)
 {
 
     int i,j;
+    i = my_strlen(s1);
 
-
-    for(i = 0; s1[i] != '\0'; i++)
-      {
-      }
   for(j = 0; s2[j] != '\0'; j++)
     {
       s1[i + j] = s2[j];
@@ -169,10 +165,8 @@ void my_strncat(char * s1, const char * s2, int num)
 {
 
     int j,k;
+    j = my_strlen(s1);
 
-    for(j = 0; s1[j] != '\0'; j++)
-      {
-      }
   for(k = 0; k < num; k++)
     {
       s1[j + k] = s2[k];
@@ -193,7 +187,7 @@ void my_strncat(char * s1, const char * s2, int num)
 const char *my_strstr(const char * s1, const char * s2)
 {
 
-    int i, check = 0;
+  int i, check = 0;
   int j = 0;
   int pos = 0;
     
@@ -214,15 +208,15 @@ const char *my_strstr(const char * s1, const char * s2)
 	   check = 0;
 	 }
      }
- if (check == 1)
-   {
-     return &s1[pos];
-   }
- else
-   {
-     return NULL;
-   }
-
+   if (check == 1)
+     {
+       return &s1[pos];
+     }
+   else
+     {
+       return NULL;
+     }
+   
 }
 
 
@@ -255,17 +249,9 @@ const char *my_strstr(const char * s1, const char * s2)
  */
 void my_strinsert(char *s1, const char *s2, int pos)
 {
-  int length = 0;
-  int i, lengths2 = 0;
+  int length = my_strlen(s1);;
+  int i, lengths2 = my_strlen(s2);
   
-  for(i = 0; s1[i] != '\0'; i++)
-    {
-      length += 1;
-    }
-  for(i = 0; s2[i] != '\0'; i++)
-    {
-      lengths2 += 1;
-    }
   if (pos < length)
     {
       for(i = length - 1 + lengths2; i >= (pos + lengths2); i--)
@@ -321,28 +307,23 @@ void my_strinsert(char *s1, const char *s2, int pos)
  */
 void my_strdelete(char *s, int pos, int length)
 {
-   int i,j;
-  int size = 0;
-
-
-    for(i = 0; s[i] != '\0'; i++)
-      {
-	size += 1;
-      }
-    if(pos < length)
-      {
-	if (length < size - 1 - pos)
-	  {
-	    for(j = 0; j < size - 1 - pos - length + 1 ; j++)
-	      {
-		s[pos + j] = s[pos + length + j];
-	      }
-	    s[pos + j] = '\0';
-	  }
-	else
-	  {
-	    s[pos] = '\0';
-	  }
-      }
+   int j;
+   int size = my_strlen(s);
+   
+   if(pos < length)
+     {
+       if (length < size - 1 - pos)
+	 {
+	   for(j = 0; j < size - 1 - pos - length + 1 ; j++)
+	     {
+	       s[pos + j] = s[pos + length + j];
+	     }
+	   s[pos + j] = '\0';
+	 }
+       else
+	 {
+	   s[pos] = '\0';
+	 }
+     }
 }
 
