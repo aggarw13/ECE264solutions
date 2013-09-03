@@ -30,11 +30,11 @@ int my_countchar(const char * s, char c)
 { 
   /*Local Declarations*/
     int occurances = 0;
-
+    int i;
   
-    for(;*s != '\0'; s++)
+    for(i = 0;s[i] != '\0'; i++)
       {
-	if(*s == c)
+	if(s[i] == c)
 	  {
 	    occurances +=1;
 	  }
@@ -73,15 +73,15 @@ void my_strupper(char * s)
  */
 void my_strlower(char * s)
 {
- 
-    for(;*s != '\0'; s++)
-      {
-	if((*s >=65) && (*s <=90))
-	  {
-	    *s += 32;
-	  }
-      }
-
+  int j;
+  for(j = 0; s[j] != '\0'; j++)
+    {
+      if((s[j] >= 65) && (s[j] <=90))
+	{
+	  s[j] += 32;
+	}
+    }
+  
 }
 
 /**
