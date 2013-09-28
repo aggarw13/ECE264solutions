@@ -214,7 +214,7 @@ void printString(char * * arrString, int numString)
   for(i = 0; i < numString; i++)
     { 
       printf("%s",arrString[i]);
-      if(arrString[i][strlen(arrString[i]) - 1] != '\n')
+      if((i < numString - 1) && (arrString[i][strlen(arrString[i]) - 1] != '\n'))
 	printf("\n");
     }
 }
@@ -373,12 +373,7 @@ int compareSTRING(const void * s1,const void * s2)
   char * * p2 = (char * *) s2;
   char * str1 = *p1;
   char * str2 = *p2;
-  if (strcmp(str1,str2) == 0)
-    {
-      str1[MAXIMUM_LENGTH - 1] = '\n';
-      str2[MAXIMUM_LENGTH - 1] = '\n';
-      return 0;
-    }
+ 
   return strcmp(str1,str2);
 }
 
