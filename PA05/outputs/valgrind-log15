@@ -1,0 +1,83 @@
+==22409== Memcheck, a memory error detector
+==22409== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==22409== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==22409== Command: ./pa05 s ./inputs/15-drseuss outputs/15-drseuss.out
+==22409== Parent PID: 22391
+==22409== 
+--22409-- 
+--22409-- Valgrind options:
+--22409--    --tool=memcheck
+--22409--    --leak-check=full
+--22409--    --verbose
+--22409--    --log-file=outputs/valgrind-log15
+--22409-- Contents of /proc/version:
+--22409--   Linux version 2.6.32-358.18.1.el6.x86_64 (mockbuild@x86-003.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-3) (GCC) ) #1 SMP Fri Aug 2 17:04:38 EDT 2013
+--22409-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--22409-- Page sizes: currently 4096, max supported 4096
+--22409-- Valgrind library directory: /usr/lib64/valgrind
+--22409-- Reading syms from /home/shay/a/aggarw13/ECE264/solutions/ECE264solutions/PA05/pa05
+--22409-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--22409--    object doesn't have a dynamic symbol table
+--22409-- Reading syms from /lib64/ld-2.12.so
+--22409-- Scheduler: using generic scheduler lock implementation.
+--22409-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==22409== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-22409-by-aggarw13-on-ecelinux16.ecn.purdue.edu
+==22409== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-22409-by-aggarw13-on-ecelinux16.ecn.purdue.edu
+==22409== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-22409-by-aggarw13-on-ecelinux16.ecn.purdue.edu
+==22409== 
+==22409== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==22409== don't want to do, unless you know exactly what you're doing,
+==22409== or are doing some strange experiment):
+==22409==   /usr/lib64/valgrind/../../bin/vgdb --pid=22409 ...command...
+==22409== 
+==22409== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==22409==   /path/to/gdb ./pa05
+==22409== and then give GDB the following command
+==22409==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=22409
+==22409== --pid is optional if only one valgrind process is running
+==22409== 
+--22409-- REDIR: 0x35ee417520 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--22409-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--22409-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--22409-- REDIR: 0x35ee417390 (index) redirected to 0x4a07bf0 (index)
+--22409-- REDIR: 0x35ee417410 (strcmp) redirected to 0x4a08530 (strcmp)
+--22409-- Reading syms from /lib64/libc-2.12.so
+--22409-- REDIR: 0x35ee884ec0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--22409-- REDIR: 0x35ee887180 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--22409-- REDIR: 0x35ee882e30 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--22409-- REDIR: 0x35ee87f8d0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--22409-- REDIR: 0x35ee927ac0 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
+--22409-- REDIR: 0x35ee87a8e0 (malloc) redirected to 0x4a0696c (malloc)
+--22409-- REDIR: 0x35ee883540 (memchr) redirected to 0x4a085d0 (memchr)
+--22409-- REDIR: 0x35ee889860 (memcpy) redirected to 0x4a08b20 (memcpy)
+--22409-- REDIR: 0x35ee881310 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--22409-- REDIR: 0x35ee932d90 (__strlen_sse42) redirected to 0x4a07f50 (strlen)
+--22409-- REDIR: 0x35ee880d60 (strcpy) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--22409-- REDIR: 0x35ee933820 (???) redirected to 0x4a07f90 (strcpy)
+--22409-- REDIR: 0x35ee87b710 (free) redirected to 0x4a06369 (free)
+--22409-- REDIR: 0x35ee88ace0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--22409-- REDIR: 0x35ee8846f0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--22409-- REDIR: 0x35ee881350 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+==22409== 
+==22409== HEAP SUMMARY:
+==22409==     in use at exit: 568 bytes in 1 blocks
+==22409==   total heap usage: 11 allocs, 10 frees, 1,582 bytes allocated
+==22409== 
+==22409== Searching for pointers to 1 not-freed blocks
+==22409== Checked 65,056 bytes
+==22409== 
+==22409== LEAK SUMMARY:
+==22409==    definitely lost: 0 bytes in 0 blocks
+==22409==    indirectly lost: 0 bytes in 0 blocks
+==22409==      possibly lost: 0 bytes in 0 blocks
+==22409==    still reachable: 568 bytes in 1 blocks
+==22409==         suppressed: 0 bytes in 0 blocks
+==22409== Reachable blocks (those to which a pointer was found) are not shown.
+==22409== To see them, rerun with: --leak-check=full --show-reachable=yes
+==22409== 
+==22409== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--22409-- 
+--22409-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--22409-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==22409== 
+==22409== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
