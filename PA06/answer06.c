@@ -198,7 +198,8 @@ struct Image * loadImage(const char* filename)
 			 return NULL;
 		       }
 		   }
-		 if(fread(&pixeldat[i],sizeof(uint8_t),1,fh))
+		 uint8_t check;
+		 if(fread(&check,sizeof(uint8_t),1,fh) == 1)
 		   {
 		     free(header);
 		     free(arr);
