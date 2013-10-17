@@ -1,0 +1,80 @@
+GCC = gcc
+CFLAGS = -g -Wall -Wshadow
+LIBS = -lm
+OBJ = obj
+TESTN := $(shell seq 1 5)
+#---------------------------------
+pa07 : answer07.o pa07.o
+	$(GCC) $(CFLAGS) answer07.o pa07.o -o pa07
+
+pa07.o : pa07.c pa07.h
+	$(GCC) $(CFLAGS) -c pa07.c
+
+answer07.o : answer07.c pa07.h
+	$(GCC) $(CFLAGS) -c answer07.c
+
+clean:
+	rm -rf pa07
+
+TESTS := $(addprefix test,${TESTN})
+
+test00 : pa07
+	./pa07 inputs/input0_A inputs/input0_B
+	valgrind --tool=memcheck --leak-check=full --verbose --show-reachable=yes --log-file=outputs/memoutput0 ./pa07 inputs/input0_A inputs/input0_B>/dev/null
+
+test01 : pa07
+	./pa07 inputs/input1_A inputs/input1_B
+	valgrind --tool=memcheck --leak-check=full --verbose --show-reachable=yes --log-file=outputs/memoutput1 ./pa07 inputs/input1_A inputs/input1_B>/dev/null
+
+test02 : pa07
+	./pa07 inputs/input2_A inputs/input2_B
+	valgrind --tool=memcheck --leak-check=full --verbose --show-reachable=yes --log-file=outputs/memoutput2 ./pa07 inputs/input2_A inputs/input2_B>/dev/null
+
+test03 : pa07
+	./pa07 inputs/input3_A inputs/input3_B
+	valgrind --tool=memcheck --leak-check=full --verbose --show-reachable=yes --log-file=outputs/memoutput3 ./pa07 inputs/input3_A inputs/input3_B>/dev/null
+
+test04 : pa07
+	./pa07 inputs/input4_A inputs/input4_B
+	valgrind --tool=memcheck --leak-check=full --verbose --show-reachable=yes --log-file=outputs/memoutput4 ./pa07 inputs/input4_A inputs/input4_B>/dev/null
+
+test05 : pa07
+	./pa07 inputs/input5_A inputs/input5_B
+	valgrind --tool=memcheck --leak-check=full --verbose --show-reachable=yes --log-file=outputs/memoutput5 ./pa07 inputs/input5_A inputs/input5_B>/dev/null
+
+test06 : pa07
+	./pa07 inputs/input6_A inputs/input6_B
+	valgrind --tool=memcheck --leak-check=full --verbose --show-reachable=yes --log-file=outputs/memoutput6 ./pa07 inputs/input6_A inputs/input6_B>/dev/null
+
+test07 : pa07
+	./pa07 inputs/input7_A inputs/input7_B
+	valgrind --tool=memcheck --leak-check=full --verbose --show-reachable=yes --log-file=outputs/memoutput7 ./pa07 inputs/input7_A inputs/input7_B>/dev/null
+
+test08 : pa07
+	./pa07 inputs/input8_A inputs/input8_B
+	valgrind --tool=memcheck --leak-check=full --verbose --show-reachable=yes --log-file=outputs/memoutput8 ./pa07 inputs/input8_A inputs/input8_B>/dev/null
+
+test09 : pa07
+	./pa07 inputs/input9_A inputs/input9_B
+	valgrind --tool=memcheck --leak-check=full --verbose --show-reachable=yes --log-file=outputs/memoutput9 ./pa07 inputs/input9_A inputs/input9_B>/dev/null
+
+#testall : pa07
+#	./pa07 images/02-unnormalized-cat-chess.ee264 outputs/output02
+#
+#	./pa07 images/03-unnormalized-hawkes-bay-NZ.ee264 outputs/output03
+#
+#	./pa07 images/04-unnormalized-nelsonmandela.ee264 outputs/output04
+#
+#	./pa07 images/05-unnormalized-sagan-stamp.ee264 outputs/output05
+#
+#	diff -w outputs/output01 expected/01-smile.ppm
+##       valgrind --tool=memory --leak-check = yes ./pa06 images/01-unnormalized-#smile.ee264 outputs/output01
+#
+#	valgrind --tool=memcheck --leak-check=full --verbose --log-file=outputs/#memoutput1 ./pa06 images/01-unnormalized-smile.ee264 outputs/output01>/dev/null#
+#
+#	valgrind --tool=memcheck --leak-check=full --verbose --log-file=outputs/#memoutput2 ./pa06 images/02-unnormalized-cat-chess.ee264 outputs/output02>/dev/#null
+#
+#	diff -w outputs/output03 expected/03-hawkes-bay-NZ.ppm
+
+testall : pa07 test00 test01 test02 test03 test04 test05 test06 test07 test08 test09
+
