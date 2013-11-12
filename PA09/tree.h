@@ -1,0 +1,26 @@
+#ifndef TREE_H
+#define TREE_H
+
+typedef struct leaf {
+    int value;
+    struct leaf *left;
+    struct leaf *right;
+} HuffNode;
+
+typedef struct Stack
+{
+  HuffNode * treeNode;
+  struct Stack * below;
+}Stacknode;
+
+int readHeader(char *);
+Stacknode * Stack_pop(Stacknode *);
+Stacknode * Stack_push(Stacknode *, HuffNode *);
+HuffNode * create_Huffmanntree(char *);
+HuffNode * create_HufftreeBit(char *);
+void Stack_destroy(Stacknode * Stack);
+void tree_destroy(HuffNode *);
+//void Huff_postOrderPrint(HuffNode *tree, char *);
+
+#endif /* tree.h */
+
