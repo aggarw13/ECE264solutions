@@ -1,6 +1,8 @@
 Left
 Left
 Left
+Left
+Left
 Back
 Right
 Back
@@ -17,9 +19,6 @@ Back
 Right
 Left
 Left
-Left
-Left
-Left
 Back
 Right
 Back
@@ -27,8 +26,6 @@ Leaf:
 
 Back
 Right
-Left
-Left
 Left
 Left
 Back
@@ -55,27 +52,20 @@ Leaf: v
 Back
 Right
 Left
+Left
 Back
 Right
 Back
 Leaf: J
 Back
-Back
 Right
-Left
 Left
 Back
 Right
 Back
-Leaf: *
+Leaf: M
 Back
-Right
-Left
-Left
 Back
-Right
-Back
-Leaf: 4
 Back
 Right
 Left
@@ -125,6 +115,7 @@ Back
 Back
 Back
 Right
+Left
 Left
 Left
 Left
@@ -208,8 +199,6 @@ Right
 Left
 Left
 Left
-Left
-Left
 Back
 Right
 Back
@@ -234,11 +223,20 @@ Back
 Back
 Right
 Left
+Left
+Left
 Back
 Right
 Back
 Leaf: d
 Back
+Right
+Left
+Back
+Right
+Back
+Leaf: w
+Back
 Back
 Right
 Left
@@ -246,36 +244,20 @@ Left
 Back
 Right
 Back
-Leaf: ’
+Leaf: ,
 Back
 Right
 Left
 Back
 Right
 Back
-Leaf: Ý
+Leaf: u
 Back
 Back
 Back
-Right
-Left
-Left
-Left
-Back
-Right
-Back
-Leaf: e
-Back
-Right
-Left
-Back
-Right
-Back
-Leaf: ¨
 Back
 Back
 Right
-Left
 Left
 Left
 Back
@@ -284,6 +266,7 @@ Back
 Leaf:  
 Back
 Right
+Left
 Left
 Left
 Back
@@ -329,19 +312,11 @@ Back
 Back
 Right
 Left
-Back
-Right
-Back
-Leaf: ‰
-Back
-Back
-Right
-Left
 Left
 Back
 Right
 Back
-Leaf: ®
+Leaf: k
 Back
 Right
 Left
@@ -350,52 +325,14 @@ Left
 Back
 Right
 Back
-Leaf: ê
+Leaf: z
 Back
 Right
 Left
 Back
 Right
 Back
-Leaf: 	
-Back
-Back
-Right
-Left
-Back
-Right
-Back
-Leaf: 
-Back
-Back
-Back
-Back
-Back
-Back
-Right
-Left
-Left
-Left
-Back
-Right
-Back
-Leaf: 
-Back
-Right
-Left
-Left
-Back
-Right
-Back
-Leaf: %
-Back
-Right
-Left
-Back
-Right
-Back
-Leaf: (
-Back
+Leaf: B
 Back
 Back
 Right
@@ -403,46 +340,7 @@ Left
 Back
 Right
 Back
-Leaf: @
-Back
-Back
-Back
-Back
-Back
-Back
-Back
-Back
-Right
-Left
-Left
-Left
-Back
-Right
-Back
-Leaf: ‰
-Back
-Right
-Left
-Back
-Right
-Back
-Leaf: #
-Back
-Back
-Right
-Left
-Left
-Back
-Right
-Back
-Leaf: Ì
-Back
-Right
-Left
-Back
-Right
-Back
-Leaf: 
+Leaf: A
 Back
 Back
 Back
@@ -452,31 +350,16 @@ Left
 Back
 Right
 Back
-Leaf: ó
+Leaf: i
 Back
 Back
-Right
-Left
-Left
-Back
-Right
-Back
-Leaf: î
-Back
-Right
-Left
-Left
-Back
-Right
-Back
-Leaf: ù
 Back
 Right
 Left
 Back
 Right
 Back
-Leaf: [
+Leaf: e
 Back
 Back
 Back

@@ -1,5 +1,5 @@
-#ifndef TREE_H
-#define TREE_H
+#ifndef PA09_H
+#define PA09_H
 
 typedef struct leaf {
     int value;
@@ -22,5 +22,5 @@ void Stack_destroy(Stacknode * Stack);
 void tree_destroy(HuffNode *);
 //void Huff_postOrderPrint(HuffNode *tree, char *);
 
-#endif /* tree.h */
+#endif /*pa09.h*/
 

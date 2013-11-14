@@ -1,19 +1,26 @@
 #ifndef PA09_H
 #define PA09_H
 
-typedef struct _huffnode {
-    int value; 
-    struct _huffnode * left;
-    struct _huffnode * right;
+typedef struct leaf {
+    int value;
+    struct leaf *left;
+    struct leaf *right;
 } HuffNode;
 
-typedef struct _stack {
-    struct _stack * next;
-    HuffNode * node;
-} Stack;
+typedef struct Stack
+{
+  HuffNode * treeNode;
+  struct Stack * below;
+}Stacknode;
 
-char *  readHeader(FILE * ftpr);
-HuffNode * create_Huffmanntree(int check, char * input);
-void Huff_postOrderPrint(HuffNode *tree);
-#endif
+int readHeader(char *);
+Stacknode * Stack_pop(Stacknode *);
+Stacknode * Stack_push(Stacknode *, HuffNode *);
+HuffNode * create_Huffmanntree(char *);
+HuffNode * create_HufftreeBit(char *);
+void Stack_destroy(Stacknode * Stack);
+void tree_destroy(HuffNode *);
+void Huff_postOrderPrint(HuffNode *tree, char *);
+
+#endif /* pa09.h */
 

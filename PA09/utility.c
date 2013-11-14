@@ -1,4 +1,4 @@
-#include "tree.h"
+#include "pa09.h"
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -94,9 +94,6 @@ HuffNode * create_Huffmanntree(char * inputf)
 	  Stack = Stack_pop(Stack);
 	  if(Stack == NULL)
 	    {
-	      fclose(ftpr);
-	      Stack_destroy(Stack);
-	      return root;
 	      tree_comp = 2;
 	    }
 	  else 
@@ -109,16 +106,16 @@ HuffNode * create_Huffmanntree(char * inputf)
 	      Stack = Stack_push(Stack, nonleaf);
 	    }
 	}
-    }/*
+    }
   fclose(ftpr);
   Stack_destroy(Stack);
-  return root;*/
+  return root;
 }
 
 HuffNode * create_HufftreeBit(char * inputf)
  {
-   FILE * ftpr = fopen(inputf,"r");
-   if(ftpr == NULL)
+   FILE * ftpr2 = fopen(inputf,"r");
+   if(ftpr2 == NULL)
      {
        printf("\nError! The  input bit representation header could not be opened\n");
        return NULL;
@@ -128,15 +125,15 @@ HuffNode * create_HufftreeBit(char * inputf)
    HuffNode * bitroot = NULL;
    Stacknode  * Stack = NULL;
    unsigned char ch1,ch2;
-   fread(&ch1,sizeof(unsigned char),1,ftpr);
-   while((bit_tree_comp == 0)&&(fread(&ch2,sizeof(unsigned char),1,ftpr)))
+   fread(&ch1,sizeof(unsigned char),1,ftpr2);
+   while((bit_tree_comp == 0)&&(fread(&ch2,sizeof(unsigned char),1,ftpr2)))
      {
        unsigned char check2 = (ch1 << (counter - 1)) & 0x80;
        check2 >>= 7;
-       printf("\ncheck 2: %d\n", check2);
+       // printf("\ncheck 2: %d\n", check2);
        if(check2 == 1)
 	 {
-	   printf("Hello 1 Counter : %d\n",counter);
+	   // printf("Hello 1 Counter : %d\n",counter);
 	   ch1 = ((ch1 << counter) | (ch2 >> (8 - counter)));
 	   HuffNode * Node = create_Node(ch1);
 	   Stack = Stack_push(Stack, Node);
@@ -144,46 +141,41 @@ HuffNode * create_HufftreeBit(char * inputf)
 	 }
        else
 	 {
-	   while((counter <= 8) && (check2 == 0))
+	   // printf("Hello 0 Counter : %d\n",counter);
+	   bitroot = Stack -> treeNode;
+	   Stack = Stack_pop(Stack);
+	   if(Stack == NULL)
 	     {
-	       printf("Hello 0 Counter : %d\n",counter);
-	       bitroot = Stack -> treeNode;
+	       bit_tree_comp = 1;
+	       break;
+	     }
+	   else
+	     {
+	       HuffNode * Node = Stack -> treeNode;
 	       Stack = Stack_pop(Stack);
-	       if(Stack == NULL)
-		 {
-		   bit_tree_comp = 1;
-		   break;
-		 }
-	       else
-		 {
-		   HuffNode * Node = Stack -> treeNode;
-		   Stack = Stack_pop(Stack);
-		   HuffNode * nonleaf = create_Node('0');
-		   nonleaf -> right = bitroot;
-		   nonleaf -> left = Node;
-		   Stack = Stack_push(Stack, nonleaf);
-		 }
-	       counter++;
-	       check2 = (ch1 << (counter - 1)) & 0x80;
+	       HuffNode * nonleaf = create_Node('0');
+	       nonleaf -> right = bitroot;
+	       nonleaf -> left = Node;
+	       Stack = Stack_push(Stack, nonleaf);
 	     }
-	   if((check2 == 128) && (counter == 8))
-	     {
-	       fread(&ch2,sizeof(unsigned char),1,ftpr);
-	       counter++;
-	     }
-	   else if(check2 == 128)
-	     {
-	       fseek(ftpr,-1*sizeof(unsigned char),SEEK_CUR);
-	       ch2 = ch1;
-	     }
+	   counter++;
 	 }
+       if((check2 == 0) && (counter <= 8))
+	 {
+	   fseek(ftpr2,-1*sizeof(unsigned char),SEEK_CUR);
+	   ch2 = ch1;
+	 }
+       if((check2 == 1) && (counter == 9))
+	 {
+	   fread(&ch2,sizeof(unsigned char),1,ftpr2);
+	 } 
        if(counter == 9)
 	 {
 	   counter = 1;
 	 }
        ch1 = ch2;
      }
-   fclose(ftpr);
+   fclose(ftpr2);
    Stack_destroy(Stack);
    return bitroot;
  }
