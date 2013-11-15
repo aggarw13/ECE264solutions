@@ -3,7 +3,7 @@
 #include "tree.h"
 
 /* DO NOT MODIFY THIS FUNCTION!!! */
-void Huff_postOrderPrint(HuffNode *tree)
+/*void Huff_postOrderPrint(HuffNode *tree)
 {
     // Base case: empty subtree
     if (tree == NULL) {
@@ -27,3 +27,4 @@ void Huff_postOrderPrint(HuffNode *tree)
     
 
 }
+*/

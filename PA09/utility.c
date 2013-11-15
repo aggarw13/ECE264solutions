@@ -16,32 +16,9 @@ int readHeader(char * input_file)
       return 0;
     }
 }
-      
-      /*
-      int clength 
-      HuffNode * chartree = create_Huffmanntree(ftpr, clength);
-      return chartree;
-    }
-  else
-    {
-      HuffNode * bittree = create_HufftreeBit(ftpr);
-      return bittree;
-      }*/
-  /*
-  char * headerinput = malloc(sizeof(char) * MAX_STRL);
-  if(headerinput == NULL)
-    {
-      return NULL;
-    }
-  else
-    {
-      fgets(headerinput,MAX_STRL,ftpr);
-      return headerinput;
-    }
-    }*/
 
-//Function for retrieving the Huffman Tree from the header
-  Stacknode * Stack_pop(Stacknode * Stack)
+//Function for remove the top Stacknode from the stack      
+Stacknode * Stack_pop(Stacknode * Stack)
   {
     if(Stack == NULL)
       {
@@ -53,7 +30,8 @@ int readHeader(char * input_file)
     return Stack;
   }
 
- Stacknode * Stack_push(Stacknode * Stack,HuffNode * Node)
+//Function for creating a stack or pushing Stacknode at the top of the stack
+Stacknode * Stack_push(Stacknode * Stack,HuffNode * Node)
  {
    Stacknode * top = malloc(sizeof(Stacknode));
    top -> below = Stack;
@@ -61,6 +39,7 @@ int readHeader(char * input_file)
    return top;
  }
 
+//Function for creating and initializing a structure pointer of typee Huffnode
 HuffNode * create_Node(char letter)
 {
   HuffNode * Node = malloc(sizeof(HuffNode));
@@ -70,12 +49,16 @@ HuffNode * create_Node(char letter)
   return Node;
 }
 
+//Function for creating a binary tree from a character based header read from the input file
 HuffNode * create_Huffmanntree(char * inputf)
 { 
   FILE * ftpr = fopen(inputf,"r");
+  if(ftpr == NULL)
+    {
+      printf("Error! The input file sent as the second argument could not be opened");
+      return NULL;
+    }
   int tree_comp = 0;
-  //nt count1 = 0;
-  //t count0 = 0;
   char ch;
   HuffNode * root = NULL;
   Stacknode * Stack = NULL;
@@ -108,10 +91,10 @@ HuffNode * create_Huffmanntree(char * inputf)
 	}
     }
   fclose(ftpr);
-  Stack_destroy(Stack);
   return root;
 }
 
+//Function for creating a binary tree from a bit-based header representation read from the input file
 HuffNode * create_HufftreeBit(char * inputf)
  {
    FILE * ftpr2 = fopen(inputf,"r");
@@ -121,27 +104,23 @@ HuffNode * create_HufftreeBit(char * inputf)
        return NULL;
      }
    int bit_tree_comp = 0;
-   int counter = 1;
+   int track = 1; //This variable keeps a trackof the command bit
    HuffNode * bitroot = NULL;
    Stacknode  * Stack = NULL;
-   unsigned char ch1,ch2;
+   unsigned char ch1,ch2; //The two unsigned char or byte variables represent consecutive byte
    fread(&ch1,sizeof(unsigned char),1,ftpr2);
    while((bit_tree_comp == 0)&&(fread(&ch2,sizeof(unsigned char),1,ftpr2)))
      {
-       unsigned char check2 = (ch1 << (counter - 1)) & 0x80;
-       check2 >>= 7;
-       // printf("\ncheck 2: %d\n", check2);
-       if(check2 == 1)
+       unsigned char check2 = (ch1 << (track - 1)) & 0x80;//Shifting the the command bit in byte ch1 to the first bit position and masking 
+       if(check2 == 128) //Checking if the shifted and masked byte ch1 contains 11 as its command bit
 	 {
-	   // printf("Hello 1 Counter : %d\n",counter);
-	   ch1 = ((ch1 << counter) | (ch2 >> (8 - counter)));
+	   ch1 = ((ch1 << track) | (ch2 >> (8 - track))); // Shifitng the relevant data after command bit of ch1 to the left and the remaining data in byte ch2 to the right and concatenating the data bits in one byte using bitwise OR operation
 	   HuffNode * Node = create_Node(ch1);
 	   Stack = Stack_push(Stack, Node);
-	   counter++;
+	   track++;
 	 }
-       else
+       else //The control enters the else construct if the command bit in byte ch1 is 0
 	 {
-	   // printf("Hello 0 Counter : %d\n",counter);
 	   bitroot = Stack -> treeNode;
 	   Stack = Stack_pop(Stack);
 	   if(Stack == NULL)
@@ -158,28 +137,28 @@ HuffNode * create_HufftreeBit(char * inputf)
 	       nonleaf -> left = Node;
 	       Stack = Stack_push(Stack, nonleaf);
 	     }
-	   counter++;
+	   track++;
 	 }
-       if((check2 == 0) && (counter <= 8))
+       if((check2 == 0) && (track <= 8))
 	 {
 	   fseek(ftpr2,-1*sizeof(unsigned char),SEEK_CUR);
 	   ch2 = ch1;
 	 }
-       if((check2 == 1) && (counter == 9))
+       if((check2 == 128) && (track == 9))
 	 {
 	   fread(&ch2,sizeof(unsigned char),1,ftpr2);
 	 } 
-       if(counter == 9)
+       if(track == 9)
 	 {
-	   counter = 1;
+	   track = 1;
 	 }
        ch1 = ch2;
      }
    fclose(ftpr2);
-   Stack_destroy(Stack);
    return bitroot;
  }
 
+//Function for destroying the binary tree by freeing the memory allocated to each tree node
 void tree_destroy(HuffNode *root)
 {
   if(root == NULL)
@@ -197,19 +176,10 @@ void tree_destroy(HuffNode *root)
   free(root);
 }
 
-void Stack_destroy(Stacknode * Stack)
+//Function to print 
+void Huff_postOrderPrint(HuffNode *tree, void * fpt)
 {
-  Stacknode * below;
-  while(Stack != NULL)
-    {
-      below = Stack;
-      Stack = Stack -> below;
-      free(below);
-    }
-}
-
-void Huff_postOrderPrint(HuffNode *tree, FILE * fp)
-{
+    FILE * fp = (FILE *)fpt;
     // Base case: empty subtree
     if (tree == NULL) {
 		return;
@@ -239,21 +209,6 @@ void Huff_postOrderPrint(HuffNode *tree, FILE * fp)
 
 
 
-  /*
-  int i;
-  if(check == 1)
-    {
-      for(i = 0; i < strlen(header); i++)
-	{
-	  if(header[i] == 1)
-	    {
-	      i++;
-	      if(header[i] == ' ')
-		{
-		  i++;
-		}
-	      HuffNode * Node = create_Node(header[i]);
-  */
   
   
   

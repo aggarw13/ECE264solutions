@@ -29,18 +29,6 @@ int main(int argc, char ** argv)
     {
       Huffmannroot = create_HufftreeBit(argv[1]);
     }
-  /* if(headerinput != NULL)
-    {
-      if(isalpha(header))
-	HuffNode * root = create_Huffmanntree(1, header);
-      else
-	HuffNode * root = create_Huffmanntree(2, header);
-    }
-  else
-    {
-      printf("Error! The header from the input file coud not be read");
-      return EXIT_FAILURE;
-      }*/
   FILE * ftpr2 = fopen(argv[2],"w");
   if(ftpr2 == NULL)
     {

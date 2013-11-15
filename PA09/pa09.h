@@ -1,4 +1,5 @@
 #ifndef PA09_H
+#include<stdlib.h>
 #define PA09_H
 
 typedef struct leaf {
@@ -20,7 +21,7 @@ HuffNode * create_Huffmanntree(char *);
 HuffNode * create_HufftreeBit(char *);
 void Stack_destroy(Stacknode * Stack);
 void tree_destroy(HuffNode *);
-void Huff_postOrderPrint(HuffNode *tree, char *);
+void Huff_postOrderPrint(HuffNode * root, void * fp);
 
 #endif /* pa09.h */
 
