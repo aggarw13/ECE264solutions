@@ -1,0 +1,89 @@
+==10394== Memcheck, a memory error detector
+==10394== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==10394== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==10394== Command: ./pa10 shapes 3
+==10394== Parent PID: 10393
+==10394== 
+--10394-- 
+--10394-- Valgrind options:
+--10394--    --tool=memcheck
+--10394--    --leak-check=full
+--10394--    --verbose
+--10394--    --log-file=outputs/memoutput_bit03
+--10394-- Contents of /proc/version:
+--10394--   Linux version 2.6.32-358.23.2.el6.x86_64 (mockbuild@x86-022.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-3) (GCC) ) #1 SMP Sat Sep 14 05:32:37 EDT 2013
+--10394-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--10394-- Page sizes: currently 4096, max supported 4096
+--10394-- Valgrind library directory: /usr/lib64/valgrind
+--10394-- Reading syms from /home/shay/a/aggarw13/ECE264/solutions/ECE264solutions/PA10/pa10
+--10394-- Reading syms from /lib64/ld-2.12.so
+--10394-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--10394--    object doesn't have a dynamic symbol table
+--10394-- Scheduler: using generic scheduler lock implementation.
+--10394-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==10394== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-10394-by-aggarw13-on-ecelinux21.ecn.purdue.edu
+==10394== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-10394-by-aggarw13-on-ecelinux21.ecn.purdue.edu
+==10394== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-10394-by-aggarw13-on-ecelinux21.ecn.purdue.edu
+==10394== 
+==10394== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==10394== don't want to do, unless you know exactly what you're doing,
+==10394== or are doing some strange experiment):
+==10394==   /usr/lib64/valgrind/../../bin/vgdb --pid=10394 ...command...
+==10394== 
+==10394== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==10394==   /path/to/gdb ./pa10
+==10394== and then give GDB the following command
+==10394==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=10394
+==10394== --pid is optional if only one valgrind process is running
+==10394== 
+--10394-- REDIR: 0x4017530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--10394-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--10394-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--10394-- REDIR: 0x40173a0 (index) redirected to 0x4c28bf0 (index)
+--10394-- REDIR: 0x4017420 (strcmp) redirected to 0x4c29530 (strcmp)
+--10394-- Reading syms from /lib64/libc-2.12.so
+--10394-- REDIR: 0x4eb3fb0 (strcasecmp) redirected to 0x4a2255c (_vgnU_ifunc_wrapper)
+--10394-- REDIR: 0x4eb6270 (strncasecmp) redirected to 0x4a2255c (_vgnU_ifunc_wrapper)
+--10394-- REDIR: 0x4eb1f20 (__GI_strrchr) redirected to 0x4c28a70 (__GI_strrchr)
+--10394-- REDIR: 0x4eae9c0 (strcmp) redirected to 0x4a2255c (_vgnU_ifunc_wrapper)
+--10394-- REDIR: 0x4f57590 (__strcmp_sse42) redirected to 0x4c29490 (strcmp)
+--10394-- REDIR: 0x4ea9920 (malloc) redirected to 0x4c2796c (malloc)
+--10394-- REDIR: 0x4eb9dd0 (strchrnul) redirected to 0x4c2af10 (strchrnul)
+--10394-- REDIR: 0x4eaa800 (free) redirected to 0x4c27369 (free)
+==10394== 
+==10394== HEAP SUMMARY:
+==10394==     in use at exit: 372 bytes in 16 blocks
+==10394==   total heap usage: 16 allocs, 0 frees, 372 bytes allocated
+==10394== 
+==10394== Searching for pointers to 16 not-freed blocks
+==10394== Checked 64,600 bytes
+==10394== 
+==10394== 12 bytes in 1 blocks are definitely lost in loss record 1 of 8
+==10394==    at 0x4C279EE: malloc (vg_replace_malloc.c:270)
+==10394==    by 0x400E01: genShapes (answer10.c:245)
+==10394==    by 0x4011D4: main (pa10.c:116)
+==10394== 
+==10394== 360 (120 direct, 240 indirect) bytes in 5 blocks are definitely lost in loss record 8 of 8
+==10394==    at 0x4C279EE: malloc (vg_replace_malloc.c:270)
+==10394==    by 0x40121C: TreeNode_create (tree.c:8)
+==10394==    by 0x401267: Tree_insert (tree.c:18)
+==10394==    by 0x4012FC: Tree_build (tree.c:32)
+==10394==    by 0x400D53: permute (answer10.c:229)
+==10394==    by 0x400DAC: permute (answer10.c:238)
+==10394==    by 0x400DAC: permute (answer10.c:238)
+==10394==    by 0x400E42: genShapes (answer10.c:251)
+==10394==    by 0x4011D4: main (pa10.c:116)
+==10394== 
+==10394== LEAK SUMMARY:
+==10394==    definitely lost: 132 bytes in 6 blocks
+==10394==    indirectly lost: 240 bytes in 10 blocks
+==10394==      possibly lost: 0 bytes in 0 blocks
+==10394==    still reachable: 0 bytes in 0 blocks
+==10394==         suppressed: 0 bytes in 0 blocks
+==10394== 
+==10394== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 6 from 6)
+--10394-- 
+--10394-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--10394-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==10394== 
+==10394== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 6 from 6)
