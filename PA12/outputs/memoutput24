@@ -1,0 +1,72 @@
+==32364== Memcheck, a memory error detector
+==32364== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==32364== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==32364== Command: ./pa12 inputs/input25_set inputs/input25_num outputs/output25 5
+==32364== Parent PID: 32363
+==32364== 
+--32364-- 
+--32364-- Valgrind options:
+--32364--    --tool=memcheck
+--32364--    --leak-check=full
+--32364--    --verbose
+--32364--    --show-reachable=yes
+--32364--    --log-file=outputs/memoutput24
+--32364-- Contents of /proc/version:
+--32364--   Linux version 2.6.32-431.el6.x86_64 (mockbuild@x86-023.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Sun Nov 10 22:19:54 EST 2013
+--32364-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--32364-- Page sizes: currently 4096, max supported 4096
+--32364-- Valgrind library directory: /usr/lib64/valgrind
+--32364-- Reading syms from /home/shay/a/aggarw13/ECE264/solutions/ECE264solutions/PA12/pa12
+--32364-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--32364--    object doesn't have a dynamic symbol table
+--32364-- Reading syms from /lib64/ld-2.12.so
+--32364-- Scheduler: using generic scheduler lock implementation.
+--32364-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==32364== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-32364-by-aggarw13-on-ecelinux10.ecn.purdue.edu
+==32364== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-32364-by-aggarw13-on-ecelinux10.ecn.purdue.edu
+==32364== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-32364-by-aggarw13-on-ecelinux10.ecn.purdue.edu
+==32364== 
+==32364== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==32364== don't want to do, unless you know exactly what you're doing,
+==32364== or are doing some strange experiment):
+==32364==   /usr/lib64/valgrind/../../bin/vgdb --pid=32364 ...command...
+==32364== 
+==32364== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==32364==   /path/to/gdb ./pa12
+==32364== and then give GDB the following command
+==32364==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=32364
+==32364== --pid is optional if only one valgrind process is running
+==32364== 
+--32364-- REDIR: 0x35cb217530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--32364-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--32364-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--32364-- REDIR: 0x35cb2173a0 (index) redirected to 0x4a07bf0 (index)
+--32364-- REDIR: 0x35cb217420 (strcmp) redirected to 0x4a08530 (strcmp)
+--32364-- Reading syms from /lib64/libpthread-2.12.so
+--32364-- Reading syms from /lib64/libm-2.12.so
+--32364-- Reading syms from /lib64/libc-2.12.so
+--32364-- REDIR: 0x35cb684fb0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--32364-- REDIR: 0x35cb687270 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--32364-- REDIR: 0x35cb681440 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+--32364-- REDIR: 0x35cb682f20 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--32364-- REDIR: 0x35cb67a920 (malloc) redirected to 0x4a0696c (malloc)
+--32364-- REDIR: 0x35cb67b800 (free) redirected to 0x4a06369 (free)
+--32364-- REDIR: 0xffffffffff600000 (???) redirected to 0x38049533 (vgPlain_amd64_linux_REDIR_FOR_vgettimeofday)
+--32364-- REDIR: 0x35cb67a560 (calloc) redirected to 0x4a056d7 (calloc)
+--32364-- REDIR: 0x35cb68add0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--32364-- REDIR: 0x35cb6847e0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--32364-- REDIR: 0x35cb683c80 (memset) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--32364-- REDIR: 0x35cb683cc0 (__GI_memset) redirected to 0x4a09a10 (memset)
+==32364== 
+==32364== HEAP SUMMARY:
+==32364==     in use at exit: 0 bytes in 0 blocks
+==32364==   total heap usage: 25 allocs, 25 frees, 4,136 bytes allocated
+==32364== 
+==32364== All heap blocks were freed -- no leaks are possible
+==32364== 
+==32364== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--32364-- 
+--32364-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--32364-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==32364== 
+==32364== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
