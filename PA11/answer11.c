@@ -359,7 +359,7 @@ void movehelper(MoveTree * root, char * state,int moves, char * movelist, int in
   if(ind == moves)
     return;
 
-  char moveb[] = {'L','R','D','U'};
+  char moveb[] = {'U','L','D','R'};
   int i;
   for(i = 0; i <= 3; i++)
     {
